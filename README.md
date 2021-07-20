@@ -28,7 +28,7 @@ data{
 transformed data
 {
 	// determine which knots the point belong to
-	int x_pos_knots[N] = findpos(nknots, xknots, N, x);
+	int x_pos_knots[N] = spline_findpos(nknots, xknots, N, x);
 }
 parameters
 {
@@ -38,7 +38,7 @@ parameters
 }
 transformed parameters
 {
-	vector[nknots] spl_coeffs = getcoeffs(nknots, xknots, yknots);
+	vector[nknots] spl_coeffs = spline_getcoeffs(nknots, xknots, yknots);
 	// these are the spline coefficients corresponding to the current model
 }
 
