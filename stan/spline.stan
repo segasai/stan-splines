@@ -1,6 +1,6 @@
 functions{
-
-  // get the vector of spacings between nodes                                               
+  
+  // get the vector of spacings between nodes
   vector geths(int n_nodes, vector nodes)
   {
     int n = n_nodes -1;
@@ -11,9 +11,10 @@ functions{
       }
     return hs;
   }
-  // obtain the vector of spline coefficients given the location                            
-  // of the nodes and values there                                                          
-  // We are using natural spline definition                                                 
+  
+  // obtain the vector of spline coefficients given the location
+  // of the nodes and values there
+  // We are using natural spline definition           
   vector getcoeffs(int n_nodes, vector nodes, vector vals)
   {
     int n=n_nodes-1;
@@ -46,8 +47,8 @@ functions{
         M[i+1,i] = hi[i+1];
         M[i,i+1] = hi[i+1];
       }
-    //print (M)                                                                             
-    zs = M \ ui ; //mdivide_left_spd(M, ui);                                                
+    zs = M \ ui ;
+    
     ret[1]=0;
     ret[n_nodes] =0;
     ret[2:n_nodes-1]=zs;
@@ -55,9 +56,9 @@ functions{
     return ret;
 
   }
-  // Evaluate the spline, given nodes, values at the nodes                                  
-  // spline coefficients, locations of evaluation points                                    
-  // and integer bin ids of each point                                                      
+  // Evaluate the spline, given nodes, values at the nodes
+  // spline coefficients, locations of evaluation points
+  // and integer bin ids of each point            
   vector spline_eval(int n_nodes, vector nodes,
                      vector vals, vector zs,
                      int n_dat, vector x, int[] i)
