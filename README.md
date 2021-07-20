@@ -1,10 +1,15 @@
 # stan-splines
+This is the code implementing natural cubic spline models in STAN as parametrized by the values at the knots.
 
-This is the scode written to implement natural spline models in STAN.
+Author: Sergey Koposov
+
+Email: skoposov AT ed DOT ac DOT uk
+
 Please cite this https://ui.adsabs.harvard.edu/abs/2019MNRAS.485.4726K/abstract
 paper if you use it.
 
-The splines are definite by the location of the knots and values there.
+# Description
+The splines are defined by the location of the knots (which are considered fixed) and y values there.
 
 The usage should be pretty simple. Here is an example of the model that
 fits the set of x,y by a spline.
@@ -45,3 +50,6 @@ model
   y ~ normal (ymod, ey);
 }
 ```
+
+See the jupyter notebook here 
+https://github.com/segasai/stan-splines/blob/main/examples/Example.ipynb
