@@ -53,3 +53,8 @@ model
 
 See the jupyter notebook here 
 https://github.com/segasai/stan-splines/blob/main/examples/Example.ipynb
+
+
+# Testing
+
+The code was tested to produce exactly the same results as scipy.interpolate.CubicSpline(bc_type='natural')
