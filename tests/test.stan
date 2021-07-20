@@ -1,4 +1,4 @@
-#include spline.stan
+#include ../stan/spline.stan
 
 data{
   int nknots;

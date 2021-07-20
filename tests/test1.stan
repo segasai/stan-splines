@@ -1,4 +1,4 @@
-#include spline_precompute.stan
+#include ../stan/spline_precompute.stan
 
 data{
   int nknots;

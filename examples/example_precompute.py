@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.interpolate
 
-print('Please make sure to copy the spline.stan in this directory!!!')
 np.random.seed(11)
 
 N = 100
