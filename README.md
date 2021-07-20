@@ -2,7 +2,9 @@
 This is the scode written to implement natural spline models in STAN.
 
 Author: Sergey Koposov
+
 Email: skoposov AT ed DOT ac DOT uk
+
 Please cite this https://ui.adsabs.harvard.edu/abs/2019MNRAS.485.4726K/abstract
 paper if you use it.
 
