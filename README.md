@@ -45,3 +45,6 @@ model
   y ~ normal (ymod, ey);
 }
 ```
+
+See the jupyter notebook here 
+https://github.com/segasai/stan-splines/blob/main/examples/Example.ipynb
