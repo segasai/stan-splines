@@ -1,5 +1,7 @@
+functions
+{
 #include ../stan/spline_precompute.stan
-
+}
 data{
   int nknots;
   int N;

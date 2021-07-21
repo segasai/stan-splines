@@ -1,4 +1,3 @@
-functions{
 
   // get the vector of spacings between nodes
   
@@ -120,4 +119,3 @@ functions{
       }
     return ret;
   }
-}

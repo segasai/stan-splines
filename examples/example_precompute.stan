@@ -1,4 +1,7 @@
+functions
+{
 #include ../stan/spline_precompute.stan
+}
 
 data{
   int N;

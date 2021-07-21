@@ -1,5 +1,4 @@
-functions{
-  
+
   // get the vector of spacings between nodes
   vector spline_geths(int n_nodes, vector nodes)
   {
@@ -97,4 +96,3 @@ functions{
       }
     return ret;
   }
-}

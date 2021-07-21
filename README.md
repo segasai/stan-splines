@@ -15,8 +15,10 @@ The usage should be pretty simple. Here is an example of the model that
 fits the set of x,y by a spline.
 
 ```stan
+functions
+{
 #include spline.stan
-
+}
 data{
 	int N;
 	int nknots;
