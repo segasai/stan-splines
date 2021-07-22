@@ -61,7 +61,7 @@
   // and integer bin ids of each point
   vector spline_eval(vector nodes,
                      vector vals, vector zs,
-                     vector[] mat, int[] pos)
+                     matrix mat, int[] pos)
   {
     int n_nodes = size(nodes);
     int n_dat = size(pos);
@@ -80,30 +80,31 @@
         D[i] = vals[i] / h[i] - h[i] * zs[i] / 6;
       }
     ret = (
-           A[pos] .* mat[1]+
-           B[pos] .* mat[2] +
-           C[pos] .* mat[3]+
-           D[pos] .* mat[4]
+           A[pos] .* mat[:,1] +
+           B[pos] .* mat[:,2] +
+           C[pos] .* mat[:,3] +
+           D[pos] .* mat[:,4]
            );
     return ret;
   }
   
-  vector[] spline_getmat(vector x, vector nodes, int[] pos)
+  matrix spline_getmat(vector x, vector nodes, int[] pos)
   // obtain a list of vectors
   // (x-nodes[i])^3, (nodes[i+1]-x)^3, (x-nodes[i]), (nodes[i+1]-x)
   {
     int n_nodes = size(nodes);
     int n_dat = size(pos);
-    vector[n_dat] mat[4];
-    int pos1[n_dat];
+    matrix[n_dat,4] mat;
     for (i in 1:n_dat)
       {
-	pos1[i] = pos[i] + 1;
+	int curpos = pos[i] ;
+	int curpos1 = curpos + 1;
+	// Filling the matrix with (x-Left) (Right - x) (x-Left)^3 (Right-x)^3
+	mat[i, 3] = (x[i]-nodes[curpos]);
+	mat[i, 4] = (nodes[curpos1]-x[i]);
+	mat[i, 1] = mat[i,3] .* mat[i,3] .* mat[i,3];
+	mat[i, 2] = mat[i,4] .* mat[i,4] .* mat[i,4];
       }
-    mat[3] = (x-nodes[pos]);
-    mat[4] = (nodes[pos1]-x);
-    mat[1] = mat[3] .* mat[3] .* mat[3];
-    mat[2] = mat[4] .* mat[4] .* mat[4];
     return mat;
   }
   
