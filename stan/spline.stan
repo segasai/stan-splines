@@ -1,8 +1,8 @@
 
   // get the vector of spacings between nodes
-  vector spline_geths(int n_nodes, vector nodes)
+  vector spline_geths(vector nodes)
   {
-    int n = n_nodes -1;
+    int n = size(nodes)-1;
     vector[n] hs;
     for (i in 1:n)
       {
@@ -14,8 +14,9 @@
   // obtain the vector of spline coefficients given the location
   // of the nodes and values there
   // We are using natural spline definition           
-  vector spline_getcoeffs(int n_nodes, vector nodes, vector vals)
+  vector spline_getcoeffs(vector nodes, vector vals)
   {
+    int n_nodes = size(nodes);
     int n=n_nodes-1;
     vector[n] hi;
     vector[n] bi;
@@ -58,11 +59,12 @@
   // Evaluate the spline, given nodes, values at the nodes
   // spline coefficients, locations of evaluation points
   // and integer bin ids of each point            
-  vector spline_eval(int n_nodes, vector nodes,
+  vector spline_eval(vector nodes,
                      vector vals, vector zs,
-                     int n_dat, vector x, int[] i)
+                     vector x, int[] i)
   {
-
+    int n_nodes = size(nodes);
+    int n_dat = size(x);
     vector[n_nodes-1] h;
     vector[n_dat] ret;
     int i1[n_dat];
@@ -70,7 +72,7 @@
       {
         i1[ii] = i[ii] + 1;
       }
-    h = spline_geths(n_nodes, nodes);
+    h = spline_geths(nodes);
 
     ret = (
            zs[i1] ./ 6 ./ h[i] .* square(x-nodes[i]) .* (x-nodes[i])+
@@ -81,8 +83,10 @@
     return ret;
   }
   // find in which node interval we should place each point of the vector                   
-  int[] spline_findpos(int n_nodes, vector nodes, int n_dat, vector x)
+int[] spline_findpos(vector nodes, vector x)
   {
+    int n_nodes = size(nodes);
+    int n_dat = size(x);
     int ret[n_dat];
     for (i in 1:n_dat)
       {

@@ -1,9 +1,9 @@
 
   // get the vector of spacings between nodes
   
-  vector spline_geths(int n_nodes, vector nodes)
+  vector spline_geths(vector nodes)
   {
-    int n = n_nodes -1;
+    int n = size(nodes) -1;
     vector[n] hs;
     for (i in 1:n)
       {
@@ -15,8 +15,9 @@
   // of the nodes and values there
   // We are using natural spline definition
   
-  vector spline_getcoeffs(int n_nodes, vector nodes, vector vals)
+  vector spline_getcoeffs(vector nodes, vector vals)
   {
+    int n_nodes = size(nodes);
     int n=n_nodes-1;
     vector[n] hi;
     vector[n] bi;
@@ -58,18 +59,19 @@
   // Evaluate the spline, given nodes, values at the nodes             
   // spline coefficients, locations of evaluation points
   // and integer bin ids of each point
-  vector spline_eval(int n_nodes, vector nodes,
+  vector spline_eval(vector nodes,
                      vector vals, vector zs,
-                     int n_dat, vector[] mat, int[] pos)
+                     vector[] mat, int[] pos)
   {
-
+    int n_nodes = size(nodes);
+    int n_dat = size(pos);
     vector[n_nodes-1] h;
     vector[n_dat] ret;
     vector[n_nodes-1] A; // not quite A but A/6h                                            
     vector[n_nodes-1] B;
     vector[n_nodes-1] C;
     vector[n_nodes-1] D;
-    h = spline_geths(n_nodes, nodes);
+    h = spline_geths(nodes);
     for(i in 1:n_nodes-1)
       {
         A[i] = zs[i+1] / 6 / h[i];
@@ -86,10 +88,12 @@
     return ret;
   }
   
-  vector[] spline_getmat(vector x, int n_dat, vector nodes, int n_node, int[] pos)
+  vector[] spline_getmat(vector x, vector nodes, int[] pos)
   // obtain a list of vectors
   // (x-nodes[i])^3, (nodes[i+1]-x)^3, (x-nodes[i]), (nodes[i+1]-x)
   {
+    int n_nodes = size(nodes);
+    int n_dat = size(pos);
     vector[n_dat] mat[4];
     int pos1[n_dat];
     for (i in 1:n_dat)
@@ -104,8 +108,10 @@
   }
   
   // find in which node interval we should place each point of the vector      
-  int[] spline_findpos(int n_nodes, vector nodes, int n_dat, vector x)
+  int[] spline_findpos(vector nodes, vector x)
   {
+    int n_dat = size(x);
+    int n_nodes = size(nodes);
     int ret[n_dat];
     for (i in 1:n_dat)
       {
