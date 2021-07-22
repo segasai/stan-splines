@@ -90,13 +90,20 @@ int[] spline_findpos(vector nodes, vector x)
     int ret[n_dat];
     for (i in 1:n_dat)
       {
+	int success = 0;
         for (j in 1:n_nodes-1)
           {
             if ((x[i]>=nodes[j]) && (x[i]<nodes[j+1]))
               {
                 ret[i] = j;
+		success = 1;
+		break;
               }
           }
+        if (success==0)
+	  {
+	    reject();
+	  }
       }
     return ret;
   }
