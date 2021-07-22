@@ -102,7 +102,7 @@ int[] spline_findpos(vector nodes, vector x)
           }
         if (success==0)
 	  {
-	    reject();
+	    reject("Point outside knot");
 	  }
       }
     return ret;

@@ -128,7 +128,7 @@
           }
 	if (success==0)
 	  {
-	    reject();
+	    reject("Point outside knot");
 	  }
       }
     return ret;
