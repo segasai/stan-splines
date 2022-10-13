@@ -6,7 +6,8 @@ Author: Sergey Koposov
 Email: skoposov AT ed DOT ac DOT uk
 
 Please cite this https://ui.adsabs.harvard.edu/abs/2019MNRAS.485.4726K/abstract
-paper if you use it.
+paper and/or this package [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7193910.svg)](https://doi.org/10.5281/zenodo.7193910)
+if you use it 
 
 # Description
 The splines are defined by the location of the knots (which are considered fixed) and y values there.
