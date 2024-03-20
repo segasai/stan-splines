@@ -61,7 +61,7 @@
   // and integer bin ids of each point            
   vector spline_eval(vector nodes,
                      vector vals, vector zs,
-                     vector x, int[] i)
+                     vector x, array[] int i)
   {
     int n_nodes = size(nodes);
     int n_dat = size(x);
@@ -83,7 +83,7 @@
     return ret;
   }
   // find in which node interval we should place each point of the vector                   
-int[] spline_findpos(vector nodes, vector x)
+array[] int spline_findpos(vector nodes, vector x)
   {
     int n_nodes = size(nodes);
     int n_dat = size(x);
