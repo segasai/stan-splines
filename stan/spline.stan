@@ -67,7 +67,7 @@
     int n_dat = size(x);
     vector[n_nodes-1] h;
     vector[n_dat] ret;
-    int i1[n_dat];
+    array[n_dat] int i1;
     for (ii in 1:n_dat)
       {
         i1[ii] = i[ii] + 1;
@@ -87,7 +87,7 @@ array[] int spline_findpos(vector nodes, vector x)
   {
     int n_nodes = size(nodes);
     int n_dat = size(x);
-    int ret[n_dat];
+    array[n_dat] int ret;
     for (i in 1:n_dat)
       {
 	int success = 0;
