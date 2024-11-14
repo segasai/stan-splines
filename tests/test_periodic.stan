@@ -1,12 +1,13 @@
 functions
 {
-#include ../stan/spline.stan
+#include ../stan/spline_periodic.stan
 }
+
 data{
   int nknots;
   int N;
   vector[nknots] xknots;
-  vector[nknots] yknots;
+  vector[nknots-1] yknots;
   vector[N] x;
 }
 transformed data

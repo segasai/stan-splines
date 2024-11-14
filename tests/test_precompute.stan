@@ -12,7 +12,7 @@ data{
 transformed data
 {
   // determine which knots the point belong to
-  int x_pos_knots[N] = spline_findpos(xknots, x);
+  array[N] int x_pos_knots = spline_findpos(xknots, x);
   // precomuted the polynomials
   matrix[N,4] spline_mat = spline_getmat(x, xknots, x_pos_knots);
   

@@ -8,10 +8,11 @@ np.random.seed(11)
 nknots = 10
 N = 1000
 xknots = np.concatenate(
-    ([0], np.sort(np.random.uniform(size=(nknots - 2))), [1]))
-yknots = np.random.normal(size=nknots)
-x = np.random.uniform(size=N)
-M = cmdstanpy.CmdStanModel('test1', 'test1.stan')
+    ([0], np.sort(np.random.uniform(0, 2 * np.pi,
+                                    size=nknots - 2)), [2 * np.pi]))
+yknots = np.random.normal(size=nknots - 1)
+x = np.random.uniform(0, 2 * np.pi, size=N)
+M = cmdstanpy.CmdStanModel(stan_file='test_periodic.stan')
 data = {'xknots': xknots, 'nknots': nknots, 'x': x, 'N': N, 'yknots': yknots}
 R = M.optimize(data=data, seed=434, iter=1)
 fout = R.runset.stdout_files[0]
@@ -34,7 +35,9 @@ with open(fout, 'r') as fp:
             except ValueError:
                 break
 res = np.array(res)
-C = scipy.interpolate.CubicSpline(xknots, yknots, bc_type='natural')
+C = scipy.interpolate.CubicSpline(xknots,
+                                  np.concatenate([yknots, [yknots[0]]]),
+                                  bc_type='periodic')
 ypred = C(x)
 maxdiff = np.abs(ypred - res).max()
 print('MAXIMUM difference is ', maxdiff)
