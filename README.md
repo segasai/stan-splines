@@ -1,8 +1,9 @@
 # stan-splines
-This is the code implementing natural cubic spline models in STAN as parametrized by the values at the knots.
+This is the package providing an interface to work with natural cubic spline models in [Stan](https://mc-stan.org) programming language.
+The splines are parametrized by the values at the knots (that can be model parameters).
 The package also supports periodic splines. 
 
-Author: Sergey Koposov
+Author: Sergey Koposov (University of Edinburgh)
 
 Email: skoposov AT ed DOT ac DOT uk
 
