@@ -1,5 +1,6 @@
 # stan-splines
 This is the code implementing natural cubic spline models in STAN as parametrized by the values at the knots.
+The package also supports periodic splines. 
 
 Author: Sergey Koposov
 
