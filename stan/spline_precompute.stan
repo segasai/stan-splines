@@ -113,7 +113,7 @@
   {
     int n_dat = size(x);
     int n_nodes = size(nodes);
-    int ret[n_dat];
+    array[n_dat] int ret;
     for (i in 1:n_dat)
       {
 	int success = 0;

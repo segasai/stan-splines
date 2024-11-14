@@ -12,8 +12,7 @@ ey = x * 0 + 0.3
 y = y0 + np.random.normal(size=N) * ey
 xknots = np.array([0, 0.2, 0.4, 0.7, .9, 1])
 nknots = len(xknots)
-#M = stan.build(open('example.stan').read())
-M = cmdstanpy.CmdStanModel('example_precompute', 'example_precompute.stan')
+M = cmdstanpy.CmdStanModel(stan_file='example_precompute.stan')
 data = {'N': N, 'x': x, 'y': y, 'ey': ey, 'xknots': xknots, 'nknots': nknots}
 R = M.sample(data=data, seed=434)
 res = R.stan_variables()
