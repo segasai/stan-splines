@@ -35,3 +35,9 @@ model
 		     yknots, spl_coeffs, x, x_pos_knots);
   y ~ normal (ymod, ey);
 }
+generated quantities
+{
+  vector[N] ymod;
+  ymod = spline_eval(xknots,
+		     yknots, spl_coeffs, x, x_pos_knots);
+}
